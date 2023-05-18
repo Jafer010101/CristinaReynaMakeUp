@@ -17,20 +17,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Python version
-        uses: actions/setup-python@v1
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.11'
+          python-version: '3.11'  # Reemplaza con la versión de Python que estás utilizando
 
-      - name: Create and start virtual environment
-        run: |
-          python -m venv venv
-          source venv/bin/activate
-      
       - name: Install dependencies
-        run: pip install -r requirements.txt
-        
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Reemplaza con el nombre de tu archivo de requisitos
+
+      - name: Run app.py
+        run: |
+          python app.py  # Comando para ejecutar tu archivo app.py
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
